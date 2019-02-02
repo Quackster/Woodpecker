@@ -56,6 +56,12 @@ namespace Woodpecker.Game
         /// </summary>
         public void GENERATEKEY()
         {
+            if (Program.DISABLE_ENCRYPTION)
+            {
+                GET_SESSION_PARAMETERS();
+                return;
+            }
+
             string Key = ObjectTree.Security.Ciphering.generateKey();
             Response.Initialize(1); // "@A"
             Response.Append(Key);
